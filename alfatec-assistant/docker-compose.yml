@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8504:8504"  # Conexión directa al puerto del contenedor
+    volumes:
+      - .:/app        # Monta el código fuente en el contenedor
+      - ./logs:/var/logs  # Mapea los logs fuera del contenedor
+    environment:
+      - PYTHONUNBUFFERED=1
