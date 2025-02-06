@@ -161,4 +161,4 @@ cython_debug/
 
 # Ignorar todos los archivos en data_creation/documentos_Proyecto_IA
 data_creation/documentos_Proyecto_IA/*
-data_creation/processed_emails.json
+data_creation/processed_emails*
