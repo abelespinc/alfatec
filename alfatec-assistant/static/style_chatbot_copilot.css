@@ -1,0 +1,232 @@
+/* Fondo principal y encapsulación del chatbot */
+body, html {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to right, rgb(38, 51, 61), rgb(50, 55, 65), rgb(33, 33, 78));
+}
+
+.chat-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro más homogéneo */
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    height: 90%; /* Ajusta altura para mejor proporción */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    background: #1f1f1f; /* Fondo sólido */
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    text-align: center;
+}
+
+.img_cont {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.user_img {
+    max-width: 120px; /* Tamaño ajustado del logo */
+    height: auto;
+}
+
+.msg_card_body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: #121212 !important; /* Fondo oscuro */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+
+.msg_card_body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.msg_card_body::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.msg_container {
+    background: #2a2a2a;
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.msg_container_send {
+    background: #4a4a4a;
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    align-self: flex-end;
+}
+
+.card-footer {
+    background: #1f1f1f;
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.type_msg {
+    background: #333333;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.type_msg::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.type_msg:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffffff;
+}
+
+.send_btn, .attach_btn {
+    background: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send_btn:hover, .attach_btn:hover {
+    background: #5a5a5a;
+}
+
+.attach_btn {
+    margin-right: 10px;
+}
+
+.msg_time {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+.bot_img_msg, .user_img_msg {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+#loadingSpinner {
+    position: absolute; /* Asegura que esté encima de otros elementos */
+    bottom: 102px; /* Ajusta según el diseño */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%);
+    font-size: 0.7rem; /* Ajusta el tamaño del spinner */
+    color: white; /* Cambia el color del spinner a blanco */
+    z-index: 1002; /* Asegura que esté encima del contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent; /* Asegura que el fondo sea transparente */
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: 95%;
+    }
+    .type_msg {
+        font-size: 14px;
+    }
+}
+
+/* Ajuste del selector de modelo */
+.model-selector {
+    width: 120px; /* Ajustar ancho */
+    height: 38px; /* Altura igual que los botones */
+    margin-right: 10px; /* Separación del resto de elementos */
+    border-radius: 5px;
+    background: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Estilo del selector de modelo */
+.model-selector {
+    background: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Ajusta el espacio interno para coincidir con los botones */
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    height: 38px; /* Asegura que tenga la misma altura que los botones */
+    margin-right: 10px; /* Espaciado a la derecha */
+}
+
+.model-selector:hover {
+    background: #5a5a5a; /* Cambia el fondo al pasar el cursor */
+}
+
+/* Ajusta la apariencia de la flecha del dropdown */
+.model-selector:focus {
+    outline: none; /* Quita el borde azul por defecto */
+    box-shadow: 0 0 5px #ffffff; /* Añade un efecto de brillo */
+}
+
+
+/* Estilos para tablas dinámicas */
+.dynamic-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0; /* Espaciado con el texto anterior */
+    background: #1f1f1f; /* Fondo oscuro */
+    color: #ffffff; /* Texto claro */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde tenue */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden;
+    text-align: left;
+}
+
+.dynamic-table th {
+    background-color: #4a4a4a; /* Fondo de encabezado */
+    color: #ffffff; /* Texto claro */
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dynamic-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    word-wrap: break-word;
+}
+
+.dynamic-table tr:nth-child(even) {
+    background-color: #2a2a2a; /* Fila alterna */
+}
+
+.dynamic-table tr:hover {
+    background-color: #3a3a3a; /* Resaltado al pasar el mouse */
+}
