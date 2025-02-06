@@ -43,6 +43,7 @@ Antes de construir los contenedores, es necesario instalar las dependencias del 
 cd alfatec-assistant
 python -m venv env  # Crear entorno virtual
 source env/bin/activate  # Activar entorno virtual (Windows: `env\Scripts\activate`)
+pip install poetry # Instalar poetry
 poetry install  # Instalar dependencias
 ```
 
