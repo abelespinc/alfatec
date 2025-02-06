@@ -32,6 +32,7 @@ Antes de construir Docker, es necesario configurar el entorno virtual y las depe
 cd alfatec-vectorization
 python -m venv env  # Crear entorno virtual
 source env/bin/activate  # Activar entorno virtual (en Windows usar 'env\\Scripts\\activate')
+pip install poetry #Instalar poetry
 poetry install  # Instalar dependencias
 ```
 
