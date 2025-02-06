@@ -25,11 +25,11 @@ def query_vector_db(request: QueryRequest):
     if not os.path.exists(FAISS_INDEX_PATH):
         raise HTTPException(status_code=404, detail="FAISS index not found")
     
-    faiss_index = FAISS.load_local(FAISS_INDEX_PATH, embedding_model)
+    faiss_index = FAISS.load_local(FAISS_INDEX_PATH, embedding_model, allow_dangerous_deserialization=True)
     results = faiss_index.similarity_search_with_score(request.query, k=request.k)
     
     response = [{
-        "score": score,
+        "score": float(score),
         "metadata": doc.metadata
     } for doc, score in results]
     
