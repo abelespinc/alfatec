@@ -7,29 +7,14 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y cron
 
-# Copy dependencies files
-COPY pyproject.toml poetry.lock ./
+# Copy existing project files including the virtual environment
+COPY . /app/
 
-# Install Poetry (for dependency management)
-RUN pip install poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-root
+# Ensure the virtual environment is recognized
+ENV PATH="/app/env/bin:$PATH"
 
-# Create virtual environment manually
-RUN python -m venv env
-
-# Install dependencies inside the virtual environment
-RUN /app/env/bin/pip install --upgrade pip \
-    && /app/env/bin/pip install -r <(poetry export --without-hashes --format=requirements.txt)
-
-# Install FastAPI and Uvicorn
-RUN /app/env/bin/pip install fastapi uvicorn
-
-# Copy the rest of the project files
-COPY . .
-
-# Set up crontab
-RUN echo "0 5 * * * /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
+# Set up crontab (Executes vectorization script at 4 AM)
+RUN echo "0 4 * * * /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
     && chmod 0644 /etc/cron.d/vectorization_cron \
     && crontab /etc/cron.d/vectorization_cron
 

@@ -1,1 +1,1 @@
-0 1 * * * /home/connecthing/alfatec/data_creation/env/bin/python3 /home/connecthing/alfatec/data_creation/eml_exploration.py >> /home/connecthing/alfatec/data_creation/logs/cron.log 2>&1
+0 0 * * * /home/connecthing/alfatec/data_creation/env/bin/python3 /home/connecthing/alfatec/data_creation/eml_exploration.py >> /home/connecthing/alfatec/data_creation/logs/cron.log 2>&1

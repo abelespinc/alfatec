@@ -1,5 +1,4 @@
-version: "3.8"
-
+version: '3.8'
 services:
   vectorization:
     build: .
@@ -7,10 +6,14 @@ services:
     ports:
       - "8505:8505"
     volumes:
-      - ../data_creation/processed_emails.json:/app/data_creation/processed_emails.json  # JSON externo
-      - ./faiss_index:/app/faiss_index  # Índice FAISS en el contenedor
+      - .:/app        # Monta el c  digo fuente en el contenedor
+      - ./env:/app/env  # Usa el entorno virtual existente
+      - ./logs:/var/logs  # Mapea los logs fuera del contenedor
+      - ../data_creation/processed_emails.json:/app/data_creation/processed_emails.json
+      - ./faiss_index:/app/faiss_index
     environment:
       - PYTHONUNBUFFERED=1
+      - FAISS_INDEX_PATH=/app/faiss_index
     restart: always
     command: /bin/bash -c "cron && /app/env/bin/python -m streamlit run /app/streamlit_app/streamlit_dashboard.py --server.port=8505 --server.address=0.0.0.0"
 
@@ -20,8 +23,12 @@ services:
     ports:
       - "8506:8506"
     volumes:
-      - ./faiss_index:/app/faiss_index  # Índice FAISS en el contenedor
+      - .:/app        # Monta el c  digo fuente en el contenedor
+      - ./env:/app/env  # Usa el entorno virtual existente
+      - ./logs:/var/logs  # Mapea los logs fuera del contenedor
+      - ./faiss_index:/app/faiss_index
     environment:
       - PYTHONUNBUFFERED=1
+      - FAISS_INDEX_PATH=/app/faiss_index
     restart: always
-    command: /bin/bash -c "/app/env/bin/python /app/api.py"
+    command: /bin/bash -c "/app/env/bin/python /app/scripts/api.py"
