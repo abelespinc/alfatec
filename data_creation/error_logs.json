@@ -1,0 +1,582 @@
+[
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.20 Enviado/info@bocdelarxiduc.com_236_20220131_Re Fwd Sol.licitud dades acidesa real.eml",
+        "error": "'NoneType' object has no attribute 'strip'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/gerencia@vtmallorca.com_236_20240913_Nou procediment inscripcions al Consell Regulador Nuevo procedimiento inscripciones.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20220618_es este documento.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20220126_Auditoria 2021.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210513_Resolución denegación subvenciones..eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/administracion@tecfrisa.es_236_20240524_CONTRATO TECFRISA-4ªPARTE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210531_documento en word.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20200721_Autorización Pozo.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20200609_factura depósitos .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210729_Notificación Hacienda.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210520_Plantilla Vinum.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20220715_Notificación....eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/MAILER-DAEMON@localhost.localhost_236_15:44:402021Jan_failure notice.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20201006_bucher.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/administracion@tecfrisa.es_236_20240524_CONTRATO TECFRISA BODEGA-1º PARTE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/administracion@tecfrisa.es_236_20240524_CONTRATO TECFRISA BODEGA-3ªPARTE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/temsalva@gmail.com_236_20230306_.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210525_Solicitud CAE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/administracion@tecfrisa.es_236_20240524_CONTRATO TECFRISA BODEGA-2ª PARTE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20220603_Notificación Ayuntamiento.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20210727_PRUEBA.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/administracion@tecfrisa.es_236_20240524_CONTRATO TECFRISA BODEGA-5ª PARTE.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/info@bocdelarxiduc.com_236_20220128_Fwd Sol.licitud dades acidesa real.eml",
+        "error": "'NoneType' object has no attribute 'strip'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/jgc@alfatec.es_236_20220131_Re Fwd Sol.licitud dades acidesa real.eml",
+        "error": "'NoneType' object has no attribute 'strip'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2019/mad 236 - BOC DEL ARXIDUC/236.30 Recibido/Nuevos Depósitos BOC 40Hl Simpre llenos Mayo 2022/Fwd Plovoucí víko 4000l.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2017/mad 199 - Bodega y Almazara EL MOLINILLO/199.30 Recibido/pbelmarm@nortia.com_199_20230125_RV FACTURAS .eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2017/mad 199 - Bodega y Almazara EL MOLINILLO/199.30 Recibido/pbelmarm@nortia.com_199_20221212_RE RV FRAS. PROFORMA.eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2017/mad 199 - Bodega y Almazara EL MOLINILLO/199.30 Recibido/pbelmarm@nortia.com_199_20221212_RV FRAS. PROFORMA .eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2017/mad 199 - Bodega y Almazara EL MOLINILLO/199.30 Recibido/ALMAZARA Y BODEGA/CARLOS ARIAS.199.30.20190307. Dossier Legalizacion Instalaciones.rar.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20210526_CMA_Revisión de plantas.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211013_cma_Revisión costos y reducción m2.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20230925_CMA_Rev interna Alfatec + Taller .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20210427_CMA_Junta de seguimiento.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220113_Registro en Sistema Procore.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220513_RV CM_Estimaciones y Pagos.eml",
+        "error": "'NoneType' object has no attribute 'strip'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20211001_CMA_Gerencia reunión con Axioma y Grupo SAI.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20210810_CMA_Entrega Paisaje TNT.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211216_CMA_Avance recorrido Turismo .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20230504_Read CASA MADERO ENTREGA 20230502.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20231017_Leído CM- Cierre de proyecto ejecutivo EMBOTELLADO.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220304_Aceptada CMA Presentación y Aclaratorias de Proyecto.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20231212_CMA_Seguimiento Taller y Alfatec .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20210625_CMA_Junta de seguimiento.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220304_Cancelada CMA_Junta seguimiento Axioma.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20221123_CMA_Artec.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/jma@alfatec.es_179_20220715_Re Casa Madero Equipos Aermec.eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20221013_CMA_Revisión Iluminación .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20230605_CMA_Revisión de master plan.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20230601_CMA_Diseño de cancelerías .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220602_CM_Modelo y critero para Nuevas Contrataciones 500k pesos.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211209_CMA_Revisión WE+ALFATEC.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/jma@alfatec.es_179_20220714_Re Casa Madero Equipos Aermec.eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/sandra.hdecadiz@gmail.com_179_20231116_Re UTAS CASA MADERO-REVISION CLIMATIZADORES.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20230720_CMA_CANCELERÍA .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/marco@tallerdearquitectura.com.mx_179_20210804_Marco Rendon's Zoom Meeting.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211021_Leído CMA_Ejercicios reducción costo.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/ftrejo@axiomaproyectos.mx_179_20231111_ Agenda - Casa Madero Seguimiento Semanal – Fase 1.1.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/octavio@tecnologiaclimatica.com.mx_179_20220712_Casa Madero Equipos Aermec.eml",
+        "error": "'from'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20230228_CMA_Revisión Alfatec + Axioma.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211116_CMA_Llamada Cierre 17 de Noviembre.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/ftrejo@axiomaproyectos.mx_179_20240203_Cancelado CM |  Fase 1.1 Embotellado  Master Plan.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/itzel@tallerdearquitectura.com.mx_179_20220901_CMA_AX+ALF.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220405_CM_Estimaciones y Pagos.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220110_CMA_Junta seguimiento Axioma.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/miguel@tallerdearquitectura.com.mx_179_20220223_Cancelada CMA_Junta de seguimiento.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220310_Cancelada CM_REUNIÓN DE DISEÑO E INGENIERIAS FASE I.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20211209_CM_REUNIÓN DE DISEÑO E INGENIERIAS FASE I.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220225_CMA_Dudas muros y cerramientos.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220128_CMA_ Oriente aliviadero .eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220411_Leído Alternativas en el modelo de simulación energética.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220525_RE CM_Estimaciones y Pagos.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/lilia@tallerdearquitectura.com.mx_179_20220512_CMA_Junta revisión 2.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/avazquez@axiomaproyectos.mx_179_20220421_CM_Estimaciones y Pagos.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2016/mad 179 - Bodega Casa Madero/179.30 Recibido/Documentación técnica recibida/MEISER.20200421 Fichas chapa raybocard suelo industrial.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/VIESSMANN.185.30.20161216.Condiciones de trabajo de caldera de agua sobrecalentada3.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170825 Planos estructura.rar.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170911 Petición de reunión para ver temas atrasados.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170728.RV  Solicitud Información Productos.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ. 185.30.20170406. Rampa 2. Ancha. RESULTADOS DE HORMIGON.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/VIESSMANN.185.30.20170327 Características técnicas Vitocrosall 300.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/ENOSERVIN.185.30.20170320.Comuicado a Bonna Sabla Nomblot.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20171201.  BARANDILLAS MEDICION OBRA.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ. 185.30.20170821. Plano 'as built' saneamiento y colectores pendientes de ejecutar..eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170810.-Re  Ascensor nave barricas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/AKEMI. 185.30.20180515_FICHA TÉCNICA ACID CLEANER.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170410. ULTIMOS PRECIOS CSJ PARA REVESTIMIENTOS de Tvmac y Tribosa.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170104 Control económico a fecha 31 de Diciembre 2016 de la obra.MURRIETA.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170420.REV MM A REV 2 CONTRATO GEYSHEN TRANS ALMAC COLOC 28 UD NOMBLOTS 002.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170807 Queja de José Luis2.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170724.Rm  Listado de Materiales.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170821 Comentarios al plano modificación colector pluviales exterior fachada norte.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170514 Plano urbanización con caminos que faltan.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170410.Acuerdo abril 2017 Nomblot 2.0.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170915._Re  Valoración Ampliación puertas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170218 Datos intercambiador estabilización Revinsa.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170914 Comentarios sobre muro corteza.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170525 Notas de cambio pendientes de firma.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/TEXSA.185.30.20170207.Consulta impermeabilización cubierta STRATEC II.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170614.Re  Ejecución solera pendiente Elaboración.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/VIESSMANN.185.30.20161216.Condiciones de trabajo de caldera de agua sobrecalentada.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170320.Nuevo Informe a preparar SGS por ALfatec y MM.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170823 Contestación al saneamiento colgado.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170821 Plano de saneamiento enterrado y colgado actualizado.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20171016 Datos válvula para cubas.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ. 185.30.20170210. Revision precio- revest y resina.CSJ.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/INTRANOX.185.30.20170606.Aceptada  Reunión ubicación modelos de depósitos.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20180409 Pasatubos firmado.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170621.Re  Rm  Fw  CONSULTA CONEXIONES ELÉCTRICAS.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170403. Comentarios Puertas en tolvas;.CSJ.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/VIESSMANN.185.30.20161216.Condiciones de trabajo de caldera de agua sobrecalentada2.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170829 Mediciones muros botellero 3.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/VIESSMANN.185.30.20170110 Situación fabricación calderas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170411.Contestacion a  Adjudicación trabajos pendientes..eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ. 185.30.20170405. Ensayos hgon 1ª rampa estrecha. RESULTADOS DE DENSIDADES.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ. 185.30.20170724. Listado de Materiales obra.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20180201.Re  AYUDAS PENDIENTES HASTA 24 ENERO 2018.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170606.FIRMAS Notas de cambio de Imel PENDIENTES APROBADAS.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170828 Documentación ascensor barricas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170207.MATERIAL ALUMINIO INCONAL MURRIETA.CSJ.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/20170824_ENTREGA R3.rar.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170411 Comentarios a plazos de aplicación paramentos verticales.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170601 Plano carpintería para petición.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/OTIS.185.30.20170828 Documentación ascensor barricas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/MM.185.30.20170602.DICHx VALV. SFERA DN50 FL.M A316 encomenda 47341.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/ACERINOX.185.30.20170714 Contestación al problema óxido.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170620.Re  Rm  Fw  CONSULTA CONEXIONES ELÉCTRICAS.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170818 Plano actualizado de saneamiento.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/CSJ.185.30.20170816 Levantamiento topográfico almacén de producto terminado.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.30 Recibido/Documentación técnica recibida/ONDOAN.185.30.20170523 Nota de cambio embotellado firmada.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/IMEL.185.20.20170306. Cadena Emails sobre  Solicitud de Devolución de campanas Craft S de Marque de Murrieta.eml",
+        "error": "expected string or bytes-like object, got 'NoneType'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.201709 Órdenes de trabajos para semana 18 de Sep 2017.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170620.Re  Rm  Fw  CONSULTA CONEXIONES ELÉCTRICAS.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170410 Condiciones particulares para aplicación de paramentos verticales.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170822 Indicaciones colector colgado fachada norte.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170822 Petición de ejecución de trabajos de saneamiento colgado.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170621.Re  Rm  Fw  2 CONSULTA CONEXIONES ELÉCTRICAS.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/MM.185.20.20170725.Fwd  Rm  Listado de Materiales.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/MM.185.20.20170828 Petición de aclaración sobre modelo ascensor barricas.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170821 Envío plano saneamiento exterior y colgado.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170914 Comentarios sobre el muro corteza.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/mad 185 - Ampliación Marqués de Murrieta/185.20 Enviado/Correspondencia enviada/CSJ.185.20.20170621.Re  Rm  Fw  CONSULTA CONEXIONES ELÉCTRICAS.eml",
+        "error": "'NoneType' object has no attribute 'group'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2024/mad 297 - CASERIO DE DUENAS/297.30 Recibido/jbb@alfatec.es_297_20241213_Re RV Elkargi Subvenciones - INVERSIÓN EN EL SECTOR VITIVINÍCOLA.eml",
+        "error": "'NoneType' object has no attribute 'strip'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2024/mad 289 - BODEGA DEIVA/289.30 Recibido/gerencia@vtmallorca.com_289_20240722_Informació tècnica VT Mallorca.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/Encargos-2024/mad 289 - BODEGA DEIVA/289.30 Recibido/gerencia@vtmallorca.com_289_20241029_Trasllat oficines VT Mallorca  Traslado oficinas VT Mallorca.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    },
+    {
+        "file": "/srv/datos/encargos_sintratar/.recycle/Encargos-2024/mad 297 - CASERIO DE DUENAS/297.30 Recibido/Re  Acta N3_ Layout proceso, propuestas interiorismo y topografico y pptx presentación. - Carlos Rojo Palomar (CRojoPalomar@entrecanalesdomecq.com) - 2024-12-16 1320.eml",
+        "error": "'NoneType' object has no attribute 'replace'"
+    }
+]
