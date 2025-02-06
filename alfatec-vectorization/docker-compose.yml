@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  vectorization:
+    build: .
+    container_name: vectorization_service
+    ports:
+      - "8505:8505"
+    volumes:
+      - ../data_creation/processed_emails.json:/app/data_creation/processed_emails.json  # JSON externo
+      - ./faiss_index:/app/faiss_index  # Índice FAISS en el contenedor
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: always
+    command: /bin/bash -c "cron && /app/env/bin/python -m streamlit run /app/streamlit_app/streamlit_dashboard.py --server.port=8505 --server.address=0.0.0.0"
+
+  api:
+    build: .
+    container_name: vectorization_api
+    ports:
+      - "8506:8506"
+    volumes:
+      - ./faiss_index:/app/faiss_index  # Índice FAISS en el contenedor
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: always
+    command: /bin/bash -c "/app/env/bin/python /app/api.py"
