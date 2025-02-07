@@ -9,7 +9,7 @@ services:
       - .:/app        # Monta el c  digo fuente en el contenedor
       - ./env:/app/env  # Usa el entorno virtual existente
       - ./logs:/var/logs  # Mapea los logs fuera del contenedor
-      - ../data_creation/processed_emails.json:/app/data_creation/processed_emails.json
+      - ../data_creation:/app/data_creation
       - ./faiss_index:/app/faiss_index
     environment:
       - PYTHONUNBUFFERED=1

@@ -14,7 +14,7 @@ COPY . /app/
 ENV PATH="/app/env/bin:$PATH"
 
 # Set up crontab (Executes vectorization script at 4 AM)
-RUN echo "0 4 * * * /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
+RUN echo "0 3 * * * /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
     && chmod 0644 /etc/cron.d/vectorization_cron \
     && crontab /etc/cron.d/vectorization_cron
 

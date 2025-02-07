@@ -52,10 +52,17 @@ def vectorize_emails():
         print("⚠️ No emails found. Skipping vectorization.")
         return
 
-    print("🗑️ Eliminando índice FAISS antiguo...")
+    print("🗑️ Eliminando archivos antiguos del índice FAISS...")
     if os.path.exists(FAISS_INDEX_PATH):
-        shutil.rmtree(FAISS_INDEX_PATH)
-    os.makedirs(FAISS_INDEX_PATH, exist_ok=True)    
+        for filename in os.listdir(FAISS_INDEX_PATH):
+            file_path = os.path.join(FAISS_INDEX_PATH, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print(f"⚠️ Error eliminando {file_path}: {e}")
 
     print("📌 Iniciando vectorización...")
     block_size = 50

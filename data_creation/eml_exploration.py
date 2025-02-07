@@ -10,7 +10,7 @@ from datetime import datetime
 import dateparser
 import hashlib
 
-INDEX_FILE = "data_creation/processed_emails_index.json"
+INDEX_FILE = "/home/connecthing/alfatec/data_creation/processed_emails_index.json"
 
 def load_processed_index():
     """Carga el índice de eml_id procesados desde un archivo."""
@@ -487,7 +487,7 @@ def process_all_eml_in_directory(base_directory):
                     error_logs.append({"file": file_path, "error": str(e)})
 
     # Guardar los datos en un archivo JSON
-    output_file = os.path.join("data_creation", "processed_emails.json")
+    output_file = "/home/connecthing/alfatec/data_creation/processed_emails.json"
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as json_file:
         json.dump({"emails": all_emails}, json_file, ensure_ascii=False, indent=4)
