@@ -205,6 +205,11 @@ class SearchEngine:
             if should_use_faiss:
                 print("🔍 Se detectó que la consulta menciona temas, asunto o contenido. Ejecutando búsqueda en FAISS...")
                 emails = self.search_faiss(query=query, k=k) 
+                # Extraer eml_id de los resultados de FAISS
+                faiss_eml_ids = {doc["metadata"]["eml_id"] for doc in faiss_results if "metadata" in doc and "eml_id" in doc["metadata"]}
+                # Filtrar self.email_data para mantener la misma estructura y formato
+                emails = [email for email in self.email_data if email.get("eml_id") in faiss_eml_ids]                
+                print(f"✅ Correos filtrados usando FAISS: {len(emails)}")
             else:
                 print("⚠️ La consulta no menciona temas, asunto o contenido. No se realizará búsqueda en FAISS.")
                 emails = self.email_data  # Si no se usa FAISS, se toman todos los emails de processed_emails.json
