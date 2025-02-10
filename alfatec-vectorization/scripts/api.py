@@ -1,5 +1,6 @@
 import os
 import shutil
+import ast
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from langchain_community.vectorstores import FAISS
