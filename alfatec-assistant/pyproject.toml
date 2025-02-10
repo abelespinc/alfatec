@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "repsol-assistant"
+name = "alfatec-assistant"
 version = "0.1.0"
 description = ""
 authors = ["Daniel Espinoza <danielx.1997@gmail.com>"]

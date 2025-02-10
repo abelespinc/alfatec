@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "data_creation"
+name = "alfatec-vectorization"
 version = "0.1.0"
 description = ""
 authors = ["Daniel Espinoza <danielx.1997@gmail.com>"]
