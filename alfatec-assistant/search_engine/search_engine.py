@@ -189,7 +189,7 @@ class SearchEngine:
     async def search(self, query: str, k: int) -> List[Dict]:
         """
         Realiza una búsqueda avanzada en los correos basándose en criterios tanto estructurados como semánticos.
-        Genera múltiples búsquedas para todas las combinaciones posibles de "recipients", "themes" y "attachment_names".
+        Genera múltiples búsquedas para todas las combinaciones posibles de "recipients" y "attachment_names".
         :param query: Consulta del usuario.
         :return: Lista de correos relevantes que cumplen los criterios.
         """
@@ -213,9 +213,6 @@ class SearchEngine:
             senders = await self.detect_sender(query)
             recipients = await self.detect_recipients(query)
             date_range = await self.detect_date_range(query)
-            #subject = await self.extract_subject(query)
-            #themes = await self.extract_themes(query)
-            #keywords = await self.extract_keywords(query)
             has_attachments = await self.detect_attachments(query)
             attachment_names = await self.detect_attachment_names(query)
             
@@ -240,7 +237,7 @@ class SearchEngine:
             all_filtered_emails = []
             for sender, recipient, attachment_name in combinations:
                 print("\n===# BÚSQUEDA PARA COMBINACIÓN ESPECÍFICA #===")
-                print(f"Sender: {sender}, Recipient: {recipient}, Theme: {theme}, Attachment Name: {attachment_name}")
+                print(f"Sender: {sender}, Recipient: {recipient}, Attachment Name: {attachment_name}")
                 
                 # Crear un diccionario de filtros específicos para esta combinación
                 current_filters = {
