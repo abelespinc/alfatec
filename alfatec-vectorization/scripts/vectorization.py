@@ -19,6 +19,7 @@ embedding_model = AzureOpenAIEmbeddings(model="text-embedding-3-large")
 # Rutas
 PROCESSED_JSON_PATH = "/app/data_creation/processed_emails.json"
 FAISS_INDEX_PATH = "/app/faiss_index"
+TEMP_FAISS_INDEX_PATH = "/app/faiss_index_temp"
 
 def load_emails():
     """Carga correos desde el JSON para vectorizar."""
@@ -52,22 +53,15 @@ def vectorize_emails():
         print("⚠️ No emails found. Skipping vectorization.")
         return
 
-    print("🗑️ Eliminando archivos antiguos del índice FAISS...")
-    if os.path.exists(FAISS_INDEX_PATH):
-        for filename in os.listdir(FAISS_INDEX_PATH):
-            file_path = os.path.join(FAISS_INDEX_PATH, filename)
-            try:
-                if os.path.isfile(file_path) or os.path.islink(file_path):
-                    os.unlink(file_path)
-                elif os.path.isdir(file_path):
-                    shutil.rmtree(file_path)
-            except Exception as e:
-                print(f"⚠️ Error eliminando {file_path}: {e}")
+    print("📌 Creando un índice FAISS temporal...")
+    if os.path.exists(TEMP_FAISS_INDEX_PATH):
+        shutil.rmtree(TEMP_FAISS_INDEX_PATH)
 
     print("📌 Iniciando vectorización...")
     block_size = 50
     total_blocks = (len(texts) + block_size - 1) // block_size
     
+    faiss_index = None
     for i, (texts_block, metadata_block) in enumerate(tqdm(zip(iterate_in_blocks(texts, block_size), iterate_in_blocks(metadata_list, block_size)), total=total_blocks, desc="Vectorizando emails", unit="bloques")):
         while True:
             try:
@@ -80,9 +74,14 @@ def vectorize_emails():
                 print("Rate limit exceeded. Retrying in 30 minutes...")
                 time.sleep(30 * 60)
     
-    faiss_index.save_local(FAISS_INDEX_PATH)
-    print("✅ Vectorización completada.")
+    faiss_index.save_local(TEMP_FAISS_INDEX_PATH)
 
+    print("✅ Vectorización completada. Reemplazando índice antiguo...")
+    if os.path.exists(FAISS_INDEX_PATH):
+        shutil.rmtree(FAISS_INDEX_PATH)
+    shutil.move(TEMP_FAISS_INDEX_PATH, FAISS_INDEX_PATH)
+
+    print("✅ Índice actualizado sin interrumpir el servicio.")
     gc.collect()
 
 if __name__ == "__main__":

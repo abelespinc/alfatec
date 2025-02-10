@@ -26,7 +26,7 @@ Te ha llegado una consulta sobre información guardada en una base de datos, y d
 - Reformula la pregunta extrayendo únicamente palabras clave, de forma que sea adecuada para una búsqueda vectorial.
 - Focaliza la reformulación en la temática del contenido del correo.
 - No focalices la reformulación en filtros de fechas, remitente, destinatario o archivos adjuntos.
-- Si en la consulta se mencionan varios asuntos, responde con una lista de los asuntos separados por comas en una lista de Python.
+- Si en la consulta se mencionan varios asuntos o temas, responde con una lista de los asuntos separados por comas en una lista de Python.
 
 Nota: Responde únicamente con la lista de Python.
 
