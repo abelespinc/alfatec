@@ -8,6 +8,7 @@ from response_creator.prompts import SUMMARIZE_EMAILS_PROMPT
 
 class ResponseCreator:
     MAX_EMAILS = 100  # Límite máximo de correos procesados
+    MAX_CARACT = 4000 # Límite máximo de caracteres del body
 
     def __init__(self, filtered_emails: List[Dict], query: str):
         """
@@ -17,6 +18,11 @@ class ResponseCreator:
         :param query: Consulta inicial del usuario.
         """
         self.filtered_emails = filtered_emails[:self.MAX_EMAILS]  # Limitar los correos procesados
+        # Truncar el campo "body" de cada correo al máximo de caracteres permitidos
+        for email in self.filtered_emails:
+            if "body" in email and isinstance(email["body"], str):
+                email["body"] = email["body"][:self.MAX_CARACT]  # Recortar a 4000 caracteres
+                
         self.query = query
 
         # Inicializar funciones semánticas con prompts predefinidos

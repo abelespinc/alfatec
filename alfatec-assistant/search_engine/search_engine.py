@@ -212,9 +212,9 @@ class SearchEngine:
             senders = await self.detect_sender(query)
             recipients = await self.detect_recipients(query)
             date_range = await self.detect_date_range(query)
-            subject = await self.extract_subject(query)
-            themes = await self.extract_themes(query)
-            keywords = await self.extract_keywords(query)
+            #subject = await self.extract_subject(query)
+            #themes = await self.extract_themes(query)
+            #keywords = await self.extract_keywords(query)
             has_attachments = await self.detect_attachments(query)
             attachment_names = await self.detect_attachment_names(query)
             
