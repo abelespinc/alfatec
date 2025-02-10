@@ -70,70 +70,6 @@ Texto del usuario: {{$user_input}}
 Nota: Responde únicamente con un string que simule un diccionario de python. No incluyas explicaciones adicionales.
 """
 
-EXTRACT_SUBJECT_PROMPT = """
-Eres un sistema especializado en extraer el asunto de correos electrónicos mencionado en una consulta proporcionada por el usuario.
-
-Tareas:
-1. Identifica si el usuario menciona un asunto explícito que quiere buscar en los correos.
-2. Extrae el asunto mencionado en la consulta. El asunto puede ser explícito, como: "que tengan como asunto: Reestructuración de la bodega".
-3. Si no se menciona un asunto, responde con un valor nulo: null.
-
-Ejemplos:
-1. "Quiero todos los tickets mandados por emilio@example.com que tengan como asunto: Reestructuración de la bodega"
-   Respuesta: "Reestructuración de la bodega"
-2. "Los correos enviados por maria@example.com"
-   Respuesta: null
-3. "Busco correos cuyo asunto sea 'Problemas técnicos con FIRe'"
-   Respuesta: "Problemas técnicos con FIRe"
-
-Texto del usuario: {{$user_input}}
-
-Nota: Responde únicamente con el asunto detectado entre comillas dobles o con null si no se menciona.
-"""
-
-EXTRACT_THEMES_PROMPT = """
-Eres un sistema especializado en extraer temas mencionados en una consulta. Un tema es una frase o palabra que describe el contenido principal sobre el cual el usuario desea buscar.
-
-Tareas:
-1. Identifica los temas principales mencionados en la consulta.
-2. Los temas pueden estar explícitos, como "la ampliación de la bodega marqués de murrieta".
-3. Extrae los temas en formato de lista. Si el usuario menciona múltiples temas, asegúrate de incluirlos todos.
-4. Si no se menciona ningún tema, devuelve una lista vacía: [].
-
-Ejemplos:
-1. "Quiero los correos mandados por maria@example.com que hablen de la ampliación de la bodega marqués de murrieta"
-   Respuesta: ["ampliación de la bodega marqués de murrieta"]
-2. "Los correos sobre problemas técnicos con FIRe o fallos en Autofirma"
-   Respuesta: ["problemas técnicos con FIRe", "fallos en Autofirma"]
-3. "Quiero todos los correos enviados por manuel@example.com"
-   Respuesta: []
-
-Texto del usuario: {{$user_input}}
-
-Nota: Responde únicamente con un string que simule una lista de python. Por ejemplo: ["tema1", "tema2"].
-"""
-
-EXTRACT_KEYWORDS_PROMPT = """
-Eres un sistema especializado en extraer palabras clave mencionadas en una consulta. Una palabra clave es un término o concepto específico que se puede usar para buscar en el contenido de un correo electrónico.
-
-Tareas:
-1. Identifica todas las palabras clave principales mencionadas en la consulta del usuario.
-2. Las palabras clave deben ser específicas, relevantes y útiles para buscar en el cuerpo del correo electrónico.
-3. Ignora palabras comunes como "quiero", "los", "que", "de", etc.
-4. Devuelve las palabras clave en formato de lista. Si no se encuentra ninguna palabra clave relevante, devuelve una lista vacía: [].
-
-Ejemplos:
-1. "Quiero correos que hablen sobre FIRe y Autofirma"
-   Respuesta: ["FIRe", "Autofirma"]
-2. "Los correos que mencionen problemas técnicos con Cl@ve o VALIDe"
-   Respuesta: ["problemas técnicos", "Cl@ve", "VALIDe"]
-3. "Quiero todos los correos enviados recientemente"
-   Respuesta: []
-
-Texto del usuario: {{$user_input}}
-
-Nota: Responde únicamente con un string que simule una lista de python. Por ejemplo: ["palabra1", "palabra2"].
-"""
 
 DETECT_ATTACHMENTS_PROMPT = """
 Eres un sistema especializado en detectar si el usuario solicita específicamente correos electrónicos que contengan o no contengan documentos adjuntos, o si no menciona nada al respecto.
@@ -187,3 +123,34 @@ Texto del usuario: {{$user_input}}
 Nota: Responde únicamente con un string que simule una lista de python. Por ejemplo: ["archivo1.pdf", "imagen.png"]. No incluyas explicaciones adicionales.
 """
 
+
+DETECT_THEME_SUBJECT_BODY_PROMPT = """
+Eres un sistema especializado en detectar si el usuario menciona explícitamente el contenido del correo electrónico, su temática o su asunto en la consulta.
+
+Tareas:
+1. Si el usuario menciona palabras como:
+   - "tema", "temática", "asunto", "contenido", "hablen de", "mencionen", "se trate de", "relacionados con", etc.
+   - O cualquier frase que indique interés en el **contenido del correo** o su **asunto**, responde con **true**.
+   
+2. Si el usuario **no menciona** nada relacionado con el contenido o el asunto del correo (por ejemplo, solo busca por remitente, destinatario, fechas o adjuntos), responde con **false**.
+
+### **Ejemplos:**
+1. **"Quiero todos los correos que hablen de contratos y licitaciones"**
+   - Respuesta: 'true'
+2. **"Los correos enviados por maria@example.com que hablen sobre la ampliación de la bodega"**
+   - Respuesta: 'true'
+3. **"Quiero los correos cuyo asunto contenga la palabra 'factura'"**
+   - Respuesta: 'true'
+4. **"Dame los correos enviados por manuel@example.com a juan@example.com"**
+   - Respuesta: 'false'
+5. **"Necesito ver los emails con documentos adjuntos"**
+   - Respuesta: 'false'
+6. **"Los correos recibidos por Pedro sobre cambios en el contrato"**
+   - Respuesta: 'true'
+7. **"Correos de Juan con archivos adjuntos"**
+   - Respuesta: 'false'
+
+### **Texto del usuario:** {{$user_input}}
+
+Nota: Responde únicamente con un string que sea 'true' o 'false' sin explicaciones adicionales.
+"""

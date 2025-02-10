@@ -52,7 +52,7 @@ class ChatKernel:
     async def run_consult(self, user_input):
         search_engine = SearchEngine()
         #filtered_emails = await search_engine.search(query=user_input)
-        filtered_emails = await search_engine.search(query=user_input, k=10)
+        filtered_emails = await search_engine.search(query=user_input, k=1000)
 
         if not filtered_emails:
             return "No se encontraron correos relevantes."

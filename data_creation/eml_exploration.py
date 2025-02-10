@@ -486,18 +486,34 @@ def process_all_eml_in_directory(base_directory):
                     print(f"Error al procesar el eml. {e}")
                     error_logs.append({"file": file_path, "error": str(e)})
 
-    # Guardar los datos en un archivo JSON
+    # Guardar los datos en un archivo JSON sin perder los emails anteriores
     output_file = "/home/connecthing/alfatec/data_creation/processed_emails.json"
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
+    # Cargar emails previamente guardados si el archivo ya existe
+    if os.path.exists(output_file):
+        with open(output_file, "r", encoding="utf-8") as json_file:
+            try:
+                existing_data = json.load(json_file)
+                existing_emails = existing_data.get("emails", [])
+            except json.JSONDecodeError:
+                existing_emails = []  # Si hay un error en el JSON, empezar desde cero
+    else:
+        existing_emails = []
+
+    # Añadir solo los nuevos emails sin duplicados
+    existing_emails.extend(all_emails)
+
+    # Guardar la lista completa de emails procesados
     with open(output_file, "w", encoding="utf-8") as json_file:
-        json.dump({"emails": all_emails}, json_file, ensure_ascii=False, indent=4)
+        json.dump({"emails": existing_emails}, json_file, ensure_ascii=False, indent=4)
 
     # Actualizar el índice de procesados
     save_processed_index(processed_ids)
 
     # Guardar errores en un archivo JSON
     if error_logs:
-        error_file = os.path.join("data_creation", "error_logs.json")
+        error_file = "/home/connecthing/alfatec/data_creation/error_logs.json"
         with open(error_file, "w", encoding="utf-8") as error_json:
             json.dump(error_logs, error_json, ensure_ascii=False, indent=4)
         print(f"Se encontraron {len(error_logs)} errores. Revisa {error_file} para más detalles.")

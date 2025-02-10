@@ -9,7 +9,7 @@ from typing import List, Dict, Union, Tuple
 from dotenv import load_dotenv
 import semantic_kernel as sk
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
-from search_engine.prompts import DETECT_SENDER_PROMPT, DETECT_RECIPIENTS_PROMPT, DETECT_DATE_PROMPT, EXTRACT_SUBJECT_PROMPT, EXTRACT_THEMES_PROMPT, EXTRACT_KEYWORDS_PROMPT, DETECT_ATTACHMENTS_PROMPT, DETECT_ATTACHMENT_NAMES_PROMPT
+from search_engine.prompts import DETECT_SENDER_PROMPT, DETECT_RECIPIENTS_PROMPT, DETECT_DATE_PROMPT, DETECT_THEME_SUBJECT_BODY_PROMPT, DETECT_ATTACHMENTS_PROMPT, DETECT_ATTACHMENT_NAMES_PROMPT
 from utils.chat_utils import SemanticQueryEngine, MaxRetriesExceededError
 
 class SearchEngine:
@@ -18,7 +18,7 @@ class SearchEngine:
         Constructor para inicializar el motor de búsqueda con los datos de los correos.
         """
         # Correos
-        json_file_path = "data_creation/processed_emails.json"
+        json_file_path = "/app/data_creation/processed_emails.json"
         with open(json_file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
         self.email_data = data.get("emails", [])
@@ -47,27 +47,6 @@ class SearchEngine:
             chat_history=[]  # No necesita historial compartido
         )
 
-        self.extract_subject_function = SemanticQueryEngine(
-            model_name="gpt-4o",
-            context=EXTRACT_SUBJECT_PROMPT,
-            history_limit=1,
-            chat_history=[]  # No necesita historial compartido
-        )
-    
-        self.extract_themes_function = SemanticQueryEngine(
-            model_name="gpt-4o",
-            context=EXTRACT_THEMES_PROMPT,
-            history_limit=1,
-            chat_history=[]  # No necesita historial compartido
-        )
-
-        self.extract_keywords_function = SemanticQueryEngine(
-            model_name="gpt-4o",
-            context=EXTRACT_KEYWORDS_PROMPT,
-            history_limit=1,
-            chat_history=[]  # No necesita historial compartido
-        )
-
         self.detect_attachments_function = SemanticQueryEngine(
             model_name="gpt-4o",
             context=DETECT_ATTACHMENTS_PROMPT,
@@ -81,6 +60,14 @@ class SearchEngine:
             history_limit=1,
             chat_history=[]  # No necesita historial compartido
         )
+
+        self.detect_theme_subject_body_function = SemanticQueryEngine(
+            model_name="gpt-4o",
+            context=DETECT_THEME_SUBJECT_BODY_PROMPT,
+            history_limit=1,
+            chat_history=[]  # No necesita historial compartido
+        )
+    
 
     async def detect_sender(self, query: str) -> List[str]:
         """
@@ -131,56 +118,6 @@ class SearchEngine:
             print(f"Error detectando fechas: {e}")
             return {"type": "none"}
 
-    async def extract_subject(self, query: str) -> Union[str, None]:
-        """
-        Extrae el asunto mencionado en la consulta del usuario.
-        :param query: Texto ingresado por el usuario.
-        :return: El asunto detectado como string o None si no se encuentra.
-        """
-        try:
-            # Ejecutar el modelo con la consulta
-            response = await self.extract_subject_function.request_with_rate_limit(query)
-
-            # Intentar interpretar la respuesta como JSON para mayor seguridad
-            subject = json.loads(response)
-            return subject
-        except Exception as e:
-            print(f"Error extrayendo asunto: {e}")
-            return None
-
-    async def extract_themes(self, query: str) -> List[str]:
-        """
-        Extrae temas específicos mencionados en la consulta del usuario.
-        :param query: Texto ingresado por el usuario.
-        :return: Lista de temas detectados.
-        """
-        try:
-            # Ejecutar el modelo con la consulta
-            response = await self.extract_themes_function.request_with_rate_limit(query)
-
-            # Intentar interpretar la respuesta como JSON
-            themes = json.loads(response)
-            return themes
-        except Exception as e:
-            print(f"Error extrayendo temas: {e}")
-            return []
-
-    async def extract_keywords(self, query: str) -> List[str]:
-        """
-        Extrae palabras clave específicas mencionadas en la consulta del usuario.
-        :param query: Texto ingresado por el usuario.
-        :return: Lista de palabras clave detectadas.
-        """
-        try:
-            # Ejecutar el modelo con la consulta
-            response = await self.extract_keywords_function.request_with_rate_limit(query)
-
-            # Intentar interpretar la respuesta como JSON
-            keywords = json.loads(response)
-            return keywords
-        except Exception as e:
-            print(f"Error extrayendo palabras clave: {e}")
-            return []
 
     async def detect_attachments(self, query: str) -> bool:
         """
@@ -212,6 +149,22 @@ class SearchEngine:
         except Exception as e:
             print(f"Error detectando nombres de documentos adjuntos: {e}")
             return []
+
+    async def detect_theme_subject_body(self, query: str) -> bool:
+        """
+        Detecta si la consulta del usuario menciona un tema, el contenido de un email o un asunto.
+        :param query: Texto ingresado por el usuario.
+        :return: true si el usuario menciona alguno de estos elementos, false en caso contrario.
+        """
+        try:
+            # Ejecutar el modelo con la consulta
+            response = await self.detect_theme_subject_body_function.request_with_rate_limit(query)
+
+            # Intentar interpretar la respuesta como booleano
+            return json.loads(response.lower())
+        except Exception as e:
+            print(f"Error detectando si la consulta menciona temas, asunto o contenido: {e}")
+            return False
 
     def search_faiss(self, query: str, k: int = 10) -> List[Dict]:
         """
@@ -245,10 +198,17 @@ class SearchEngine:
             print("===============================================================")
             print("===# INICIO DEL PROCESO DE EXTRACCIÓN DE CRITERIOS DE BÚSQUEDA #===")
             
-            # 1. Buscar en FAISS directamente con el `query`
-            faiss_results = self.search_faiss(query=query, k=k)
-       
-            # 2. Extraer criterios de búsqueda con mini-agentes
+            # Detectar si la consulta menciona temas, asuntos o contenido del email
+            should_use_faiss = await self.detect_theme_subject_body(query)
+            
+            if should_use_faiss:
+                print("🔍 Se detectó que la consulta menciona temas, asunto o contenido. Ejecutando búsqueda en FAISS...")
+                emails = self.search_faiss(query=query, k=k) 
+            else:
+                print("⚠️ La consulta no menciona temas, asunto o contenido. No se realizará búsqueda en FAISS.")
+                emails = self.email_data  # Si no se usa FAISS, se toman todos los emails de processed_emails.json
+
+            # Extraer criterios de búsqueda con mini-agentes
             senders = await self.detect_sender(query)
             recipients = await self.detect_recipients(query)
             date_range = await self.detect_date_range(query)
@@ -257,7 +217,7 @@ class SearchEngine:
             keywords = await self.extract_keywords(query)
             has_attachments = await self.detect_attachments(query)
             attachment_names = await self.detect_attachment_names(query)
-
+            
             print("\n🔍 Criterios extraídos:")
             print(json.dumps({
                 "senders": senders, "recipients": recipients, "date_range": date_range,
@@ -266,7 +226,7 @@ class SearchEngine:
             }, indent=4, ensure_ascii=False))
             
 
-            # 3. Generar combinaciones de criterios
+            # Generar combinaciones de criterios
             print("\n===# GENERANDO COMBINACIONES DE CRITERIOS #===")
             combinations = list(product(
                 senders or [None],
@@ -277,7 +237,7 @@ class SearchEngine:
 
             print(f"Generadas {len(combinations)} combinaciones de criterios.")
 
-            # 4. Realizar búsquedas para cada combinación
+            # Realizar búsquedas para cada combinación
             all_filtered_emails = []
             for sender, recipient, theme, attachment_name in combinations:
                 print("\n===# BÚSQUEDA PARA COMBINACIÓN ESPECÍFICA #===")
@@ -296,13 +256,13 @@ class SearchEngine:
                 }
 
                 # Filtrar emails usando los criterios actuales
-                filtered_emails = self.filter_emails(faiss_results, current_filters)
+                filtered_emails = self.filter_emails(emails, current_filters)
                 print(f"Emails encontrados: {len(filtered_emails)}")
                 
                 # Agregar resultados a la lista general
                 all_filtered_emails.extend(filtered_emails)
 
-            # 5. Eliminar duplicados (basado en combinación de campos únicos)
+            # Eliminar duplicados (basado en combinación de campos únicos)
             unique_emails_set = set()
             unique_emails_list = []
 
@@ -407,18 +367,6 @@ class SearchEngine:
                 email for email in filtered_emails
                 if matches_criteria(email, "recipients", filters["recipients"])
             ]
-
-        # if filters["subject"]:
-        #     filtered_emails = [
-        #         email for email in filtered_emails
-        #         if matches_criteria(email, "subject", [filters["subject"]])
-        #     ]
-
-        # if filters["themes"]:
-        #     filtered_emails = [
-        #         email for email in filtered_emails
-        #         if matches_criteria(email, "body", filters["themes"])
-        #     ]
 
         if filters["attachment_names"]:
             filtered_emails = [

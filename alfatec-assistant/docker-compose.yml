@@ -9,5 +9,6 @@ services:
     volumes:
       - .:/app        # Monta el código fuente en el contenedor
       - ./logs:/var/logs  # Mapea los logs fuera del contenedor
+      - ../data_creation:/app/data_creation
     environment:
       - PYTHONUNBUFFERED=1
