@@ -19,6 +19,8 @@ services:
 
   api:
     build: .
+    env_file:
+      - .env
     container_name: vectorization_api
     ports:
       - "8506:8506"
