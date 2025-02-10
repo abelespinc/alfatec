@@ -1,6 +1,7 @@
 import re
 import os
 import json
+import requests
 from itertools import product
 from rapidfuzz import fuzz
 from rapidfuzz import process
@@ -221,7 +222,6 @@ class SearchEngine:
             print("\n🔍 Criterios extraídos:")
             print(json.dumps({
                 "senders": senders, "recipients": recipients, "date_range": date_range,
-                "themes": themes, "keywords": keywords,
                 "has_attachments": has_attachments, "attachment_names": attachment_names
             }, indent=4, ensure_ascii=False))
             
@@ -231,7 +231,6 @@ class SearchEngine:
             combinations = list(product(
                 senders or [None],
                 recipients or [None],  # Si no hay recipients, usar None
-                themes or [None],      # Si no hay themes, usar None
                 attachment_names or [None]  # Si no hay attachment_names, usar None
             ))
 
@@ -239,7 +238,7 @@ class SearchEngine:
 
             # Realizar búsquedas para cada combinación
             all_filtered_emails = []
-            for sender, recipient, theme, attachment_name in combinations:
+            for sender, recipient, attachment_name in combinations:
                 print("\n===# BÚSQUEDA PARA COMBINACIÓN ESPECÍFICA #===")
                 print(f"Sender: {sender}, Recipient: {recipient}, Theme: {theme}, Attachment Name: {attachment_name}")
                 
@@ -248,9 +247,6 @@ class SearchEngine:
                     "senders": [sender] if sender else [],
                     "recipients": [recipient] if recipient else [],
                     "date_range": date_range,
-                    "subject": subject,
-                    "themes": [theme] if theme else [],
-                    "keywords": keywords,
                     "has_attachments": has_attachments,
                     "attachment_names": [attachment_name] if attachment_name else []
                 }
