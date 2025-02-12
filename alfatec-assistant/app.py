@@ -1,24 +1,18 @@
 import asyncio
 import time
-from flask import Flask, render_template, request, session, redirect, url_for,make_response,jsonify
 import os
-import uuid  # Import the UUID library
+import uuid
 import requests
-from authlib.integrations.flask_client import OAuth  # Importar Authlib para manejar OAuth
-from utils.chat_utils import SemanticQueryEngine,MaxRetriesExceededError
+import logging
+import re
+from quart import Quart, render_template, request, session, redirect, url_for, jsonify, flash
+from flask_session import Session
+from utils.chat_utils import SemanticQueryEngine, MaxRetriesExceededError
 from utils.states import states
 from utils.chat_kernel import ChatKernel
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
-from functools import wraps
-from authlib.integrations.flask_client import OAuthError
-from authlib.jose import jwt
-import uuid
-from quart import Quart, render_template, request, session, redirect, url_for, make_response, jsonify
-from aioauth_client import OAuth2Client
+from utils.auth import authenticate, login_user, logout_user, login_required
+
 #from quart_session import Session
-from flask_session import Session
-import re
-import logging
 
 #app = Flask(__name__)
 app = Quart(__name__, static_url_path='/chatbot/static')
@@ -52,6 +46,72 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+
+# Ruta para login con logs detallados
+@app.route('/login', methods=['GET', 'POST'])
+async def login():
+    try:
+        logging.info("[LOGIN] Solicitud recibida en /login")
+        print("[LOGIN] Solicitud recibida en /login")
+
+        if request.method == 'POST':
+            logging.info("[LOGIN] Método POST detectado")
+            print("[LOGIN] Método POST detectado")
+
+            form = await request.form
+            email = form.get('email')
+            password = form.get('password')
+
+            logging.info(f"[LOGIN] Datos recibidos - Email: {email}")
+            print(f"[LOGIN] Datos recibidos - Email: {email}")
+
+            if not email or not password:
+                logging.error("[LOGIN] Error: Falta email o contraseña")
+                print("[LOGIN] Error: Falta email o contraseña")
+                await flash("Debes ingresar un email y contraseña.")
+                return redirect(url_for('login'))
+
+            user = authenticate(email, password)
+
+            if user:
+                logging.info("[LOGIN] Usuario autenticado correctamente")
+                print("[LOGIN] Usuario autenticado correctamente")
+
+                session.clear()
+                login_user(user)
+
+                logging.info("[LOGIN] Redirigiendo al chatbot")
+                print("[LOGIN] Redirigiendo al chatbot")
+
+                return redirect(url_for('chatbot'))
+            else:
+                logging.warning("[LOGIN] Autenticación fallida")
+                print("[LOGIN] Autenticación fallida")
+
+                await flash("Correo o contraseña incorrectos.")
+                return redirect(url_for('login'))
+
+        return await render_template('login.html')
+
+    except Exception as e:
+        logging.error(f"[LOGIN] Error inesperado: {str(e)}")
+        print(f"[LOGIN] Error inesperado: {str(e)}")
+        return "Internal Server Error", 500
+
+
+@app.route('/logout')
+async def logout():
+    logging.info("[LOGOUT] Cierre de sesión iniciado")
+    print("[LOGOUT] Cierre de sesión iniciado")
+
+    logout_user()
+
+    logging.info("[LOGOUT] Usuario desconectado, redirigiendo al login")
+    print("[LOGOUT] Usuario desconectado, redirigiendo al login")
+
+    return await redirect(url_for('login'))  # Agregamos `await` porque Quart usa asyn
+
 
 def show_chat_history():
     return session.get('chat_history', [])
