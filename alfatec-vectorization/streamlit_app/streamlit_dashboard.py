@@ -64,19 +64,23 @@ if os.path.exists(FAISS_INDEX_PATH):
     # Mostrar los 300 m  s recientes
     st.subheader(" ^=^s   ^zltimos 300 correos:")
     for i, doc in enumerate(sorted_docs[:300]):
+        st.write(f"**📌 Asunto:** {doc.metadata['subject']}")
         st.write(f"** ^=^s^e Fecha:** {doc.metadata['date']} - ** ^=^s  Asunto:** {doc.metadata['subject']}")
         st.write(f" ^=^s  **Remitente:** {doc.metadata['sender']}")
         st.write(f" ^=^s  **Destinatarios:** {doc.metadata['recipients']}")
+        # Expander para mostrar el contenido completo del correo
+        with st.expander(f"📜 Ver contenido del email ({len(doc.page_content)} caracteres)"):
+            st.write(doc.page_content)  # Muestra el cuerpo completo
         st.write("---")
 
-    query = st.text_input(" ^=^t^m Ingrese su b  squeda:")
-    if query:
-        results = faiss_index.similarity_search_with_score(query, k=5)
-        st.subheader(" ^=^t^n Resultados:")
-        for i, (doc, score) in enumerate(results):
-            st.write(f"### Resultado {i+1} (Score: {score:.2f})")
-            st.write(f" ^=^s  **Asunto:** {doc.metadata['subject']}")
-            st.write(f" ^=^s^| **Contenido:** {doc.page_content[:500]}...")
-            st.write("---")
+    #query = st.text_input(" ^=^t^m Ingrese su b  squeda:")
+    #if query:
+    #    results = faiss_index.similarity_search_with_score(query, k=5)
+    #    st.subheader(" ^=^t^n Resultados:")
+    #    for i, (doc, score) in enumerate(results):
+    #        st.write(f"### Resultado {i+1} (Score: {score:.2f})")
+    #        st.write(f" ^=^s  **Asunto:** {doc.metadata['subject']}")
+    #        st.write(f" ^=^s^| **Contenido:** {doc.page_content[:500]}...")
+    #        st.write("---")
 else:
     st.warning(" ^z   ^o  ^mndice FAISS no encontrado.")

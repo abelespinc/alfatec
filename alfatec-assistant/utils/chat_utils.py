@@ -66,6 +66,9 @@ class SemanticQueryEngine:
         self.api_key = self.api_keys[self.current_endpoint_index]
         self.prompt = context
 
+        print(f"[DEBUG] Inicializando SemanticQueryEngine con Endpoint: {self.endpoint}")
+        print(f"[DEBUG] API Key en uso en SemanticQueryEngine: {self.api_key}")
+
         # Inicializar kernel y configuraciones adicionales
         self.initialize_kernel()
         self.chat_history = chat_history if chat_history else []

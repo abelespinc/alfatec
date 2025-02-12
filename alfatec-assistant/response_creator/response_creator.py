@@ -2,9 +2,12 @@ import os
 import regex as re
 import json
 from typing import List, Dict
+from dotenv import load_dotenv
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
 from utils.chat_utils import SemanticQueryEngine
 from response_creator.prompts import SUMMARIZE_EMAILS_PROMPT
+
+load_dotenv()
 
 class ResponseCreator:
     MAX_EMAILS = 100  # Límite máximo de correos procesados
@@ -17,6 +20,9 @@ class ResponseCreator:
         :param filtered_emails: Lista de correos relevantes obtenidos de la búsqueda.
         :param query: Consulta inicial del usuario.
         """
+        print(f"[DEBUG] Intentando conectar con OpenAI en Endpoint: {self.endpoint}")
+        print(f"[DEBUG] API Key usada en chat(): {self.api_key}")
+
         self.filtered_emails = filtered_emails[:self.MAX_EMAILS]  # Limitar los correos procesados
         # Truncar el campo "body" de cada correo al máximo de caracteres permitidos
         for email in self.filtered_emails:
@@ -57,7 +63,6 @@ class ResponseCreator:
             print("Response final:", response)
             return response
 
-            return response
         except Exception as e:
             print(f"Error al generar resumen: {e}")
             return "No se pudo generar el resumen."

@@ -204,7 +204,7 @@ class SearchEngine:
             
             if should_use_faiss:
                 print("🔍 Se detectó que la consulta menciona temas, asunto o contenido. Ejecutando búsqueda en FAISS...")
-                emails = self.search_faiss(query=query, k=k) 
+                faiss_results = self.search_faiss(query=query, k=k) 
                 # Extraer eml_id de los resultados de FAISS
                 faiss_eml_ids = {doc["metadata"]["eml_id"] for doc in faiss_results if "metadata" in doc and "eml_id" in doc["metadata"]}
                 # Filtrar self.email_data para mantener la misma estructura y formato
@@ -277,6 +277,10 @@ class SearchEngine:
                 if unique_key not in unique_emails_set:
                     unique_emails_set.add(unique_key)
                     unique_emails_list.append(email)
+
+            if should_use_faiss:
+                email_score_map = {doc["metadata"]["eml_id"]: doc["score"] for doc in faiss_results}
+                unique_emails_list = sorted(unique_emails_list, key=lambda x: email_score_map.get(x["eml_id"], 0), reverse=True)[:100]
 
             print(f"\n===# RESULTADO FINAL DE LA BÚSQUEDA #===")
             print(f"Total de emails únicos: {len(unique_emails_list)}")
