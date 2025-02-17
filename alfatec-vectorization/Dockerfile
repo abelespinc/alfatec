@@ -12,6 +12,7 @@ COPY . /app/
 
 # Ensure the virtual environment is recognized
 ENV PATH="/app/env/bin:$PATH"
+ENV PYTHONPATH="/app:$PYTHONPATH"
 
 # Asegurar permisos correctos en FAISS_INDEX_PATH y logs
 RUN mkdir -p /app/faiss_index /app/logs && \
