@@ -3,10 +3,15 @@ import json
 import time
 import gc
 import shutil
+import logging
 from langchain_community.vectorstores import FAISS
 from langchain_openai import AzureOpenAIEmbeddings
 from tqdm import tqdm
 from openai import RateLimitError
+
+# Configuración de logs
+LOG_FILE = "/app/logs/vectorization.log"
+logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Configuración de variables de entorno para Azure OpenAI
 os.environ['AZURE_OPENAI_API_KEY'] = "8AAvuF9tB7LKLH59KdteT82TkBNUWCbTQJJvpgeeY03UiBVnDcz4JQQJ99ALACYeBjFXJ3w3AAABACOGVEun"
@@ -23,6 +28,7 @@ TEMP_FAISS_INDEX_PATH = "/app/faiss_index_temp"
 
 def load_emails():
     """Carga correos desde el JSON para vectorizar."""
+    logging.info("📥 Cargando emails desde JSON...")
     with open(PROCESSED_JSON_PATH, "r", encoding="utf-8") as file:
         data = json.load(file)
     
@@ -38,6 +44,8 @@ def load_emails():
             "root_path": email["root_path"],
             "attachments": email["attachments"]
         })
+
+    logging.info(f"✅ {len(texts)} emails cargados correctamente.")
     return texts, metadata_list
 
 def iterate_in_blocks(lst, block_size):
@@ -47,17 +55,18 @@ def iterate_in_blocks(lst, block_size):
 
 def vectorize_emails():
     """Vectoriza los emails y guarda en FAISS."""
+    logging.info("🔄 Iniciando proceso de vectorización...")
+
     texts, metadata_list = load_emails()
 
     if not texts:
-        print("⚠️ No emails found. Skipping vectorization.")
+        logging.warning("⚠️ No se encontraron emails. Se cancela la vectorización.")
         return
 
-    print("📌 Creando un índice FAISS temporal...")
+    logging.info("📌 Creando índice FAISS temporal...")
     if os.path.exists(TEMP_FAISS_INDEX_PATH):
         shutil.rmtree(TEMP_FAISS_INDEX_PATH)
 
-    print("📌 Iniciando vectorización...")
     block_size = 50
     total_blocks = (len(texts) + block_size - 1) // block_size
     
@@ -71,17 +80,17 @@ def vectorize_emails():
                     faiss_index.add_texts(texts_block, metadatas=metadata_block)
                 break
             except RateLimitError:
-                print("Rate limit exceeded. Retrying in 30 minutes...")
+                logging.warning("⚠️ Rate limit exceeded. Retrying in 30 minutes...")
                 time.sleep(30 * 60)
     
     faiss_index.save_local(TEMP_FAISS_INDEX_PATH)
+    logging.info("✅ Vectorización completada. Reemplazando índice antiguo...")
 
-    print("✅ Vectorización completada. Reemplazando índice antiguo...")
     if os.path.exists(FAISS_INDEX_PATH):
         shutil.rmtree(FAISS_INDEX_PATH)
     shutil.move(TEMP_FAISS_INDEX_PATH, FAISS_INDEX_PATH)
 
-    print("✅ Índice actualizado sin interrumpir el servicio.")
+    logging.info("✅ Índice actualizado sin interrumpir el servicio.")
     gc.collect()
 
 if __name__ == "__main__":

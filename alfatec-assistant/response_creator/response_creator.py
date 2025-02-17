@@ -9,7 +9,7 @@ from utils.chat_utils import SemanticQueryEngine
 from response_creator.prompts import SUMMARIZE_EMAILS_PROMPT
 
 class ResponseCreator:
-    MAX_EMAILS = 100  # Límite máximo de correos procesados
+    MAX_EMAILS = 10  # Límite máximo de correos procesados
     MAX_CARACT = 4000 # Límite máximo de caracteres del body
 
     def __init__(self, filtered_emails: List[Dict], query: str):

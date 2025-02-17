@@ -13,8 +13,12 @@ COPY . /app/
 # Ensure the virtual environment is recognized
 ENV PATH="/app/env/bin:$PATH"
 
-# Set up crontab (Executes vectorization script at 4 AM)
-RUN echo "0 3 * * * /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
+# Asegurar permisos correctos en FAISS_INDEX_PATH y logs
+RUN mkdir -p /app/faiss_index /app/logs && \
+    chmod -R 777 /app/faiss_index /app/logs
+
+# Set up crontab (Ejecuta vectorization.py a las 00:00)
+RUN echo "0 0 * * * /app/env/bin/python /app/scripts/vectorization.py >> /app/logs/vectorization.log 2>&1" > /etc/cron.d/vectorization_cron \
     && chmod 0644 /etc/cron.d/vectorization_cron \
     && crontab /etc/cron.d/vectorization_cron
 

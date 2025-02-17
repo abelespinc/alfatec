@@ -3,6 +3,7 @@ import os
 import json
 import requests
 import time
+import asyncio
 from itertools import product
 from rapidfuzz import fuzz
 from rapidfuzz import process
@@ -203,9 +204,24 @@ class SearchEngine:
             print("===# INICIO DEL PROCESO DE EXTRACCIÓN DE CRITERIOS DE BÚSQUEDA #===")
             
             # Detectar si la consulta menciona temas, asuntos o contenido del email
+            """
             should_use_faiss = await self.detect_theme_subject_body(query)
             end_detect_theme_subject_body = time.time()
             print(f"[SEARCH ENGINE] Tiempo total detect theme subject body: {end_detect_theme_subject_body - start_total:.2f} segundos")
+            """
+
+            # Ejecutamos todas las detecciones en paralelo para reducir tiempos
+            tasks = [
+                self.detect_theme_subject_body(query),
+                self.detect_sender(query),
+                self.detect_recipients(query),
+                self.detect_date_range(query),
+                self.detect_attachments(query),
+                self.detect_attachment_names(query),
+            ]
+            results = await asyncio.gather(*tasks)
+            should_use_faiss, senders, recipients, date_range, has_attachments, attachment_names = results
+            print(f"[SEARCH ENGINE] Detects paralelos ejecutados en {time.time() - start_total:.2f} segundos")
 
             if should_use_faiss:
                 print("🔍 Se detectó que la consulta menciona temas, asunto o contenido. Ejecutando búsqueda en FAISS...")
@@ -223,6 +239,7 @@ class SearchEngine:
                 print("⚠️ La consulta no menciona temas, asunto o contenido. No se realizará búsqueda en FAISS.")
                 emails = self.email_data  # Si no se usa FAISS, se toman todos los emails de processed_emails.json
 
+            """
             # Extraer criterios de búsqueda con mini-agentes
             start_senders = time.time()
             senders = await self.detect_sender(query)
@@ -248,7 +265,7 @@ class SearchEngine:
             attachment_names = await self.detect_attachment_names(query)
             end_attachment_names = time.time()
             print(f"[SEARCH ENGINE] Tiempo en detectar nombres de adjuntos: {end_attachment_names - start_attachment_names:.2f} segundos")
-        
+            """
             print("\n🔍 Criterios extraídos:")
             print(json.dumps({
                 "senders": senders, "recipients": recipients, "date_range": date_range,

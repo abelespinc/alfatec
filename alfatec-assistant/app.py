@@ -40,6 +40,8 @@ custom_flows = {
     "consult": True
 }
 
+#[KERNEL]
+user_kernels = {}
 
 #Logging config
 log_file = "/var/logs/chatbot_logs.log"
@@ -86,6 +88,8 @@ async def login():
 
                 session.clear()
                 login_user(user)
+                
+                user_kernels.pop(user.username, None)
 
                 logging.info("[LOGIN] Redirigiendo al chatbot")
                 print("[LOGIN] Redirigiendo al chatbot")
@@ -114,7 +118,9 @@ async def logout():
 
         # Asegurarse de que 'session' contiene 'user' antes de eliminarlo
         if 'user' in session:
+            username = session['user'].get('username')
             logout_user()
+            user_kernels.pop(username, None)
             logging.info("[LOGOUT] Usuario desconectado correctamente")
             print("[LOGOUT] Usuario desconectado correctamente")
         else:
@@ -137,11 +143,11 @@ async def progress():
         while True:
             if progress_messages:
                 yield f"data: {progress_messages[0]}\n\n"  # No borrar inmediatamente
-                await asyncio.sleep(3)  # Esperar para que el frontend lo reciba
-                progress_messages.pop(0)  # Luego de 3 segundos, borrar el mensaje
+                await asyncio.sleep(0.1)  # Reducido para que el frontend no tarde en actualizar
+                progress_messages.clear()  # 🔥 Asegurar que los mensajes se borran después de mostrarlos
             else:
                 yield "data: \n\n"  # Mantener la conexión abierta
-                await asyncio.sleep(1)  # Reducir la carga del servidor
+                await asyncio.sleep(0.1)  # Menos carga en el servidor
     
     return quart.Response(event_stream(), content_type='text/event-stream')
 
@@ -161,9 +167,22 @@ async def chatbot(state='default_es'):
     # [VARIABLES]
     bot_icon = states[state]['bot_icon']
     user_icon = states[state]['user_icon']
-
-    #user_id = get_or_create_user_id()
     session['current_state'] = state
+
+    username = session['user']['username']
+
+    # Inicializar chat_history si no existe
+    if 'chat_history' not in session:
+        session['chat_history'] = []
+
+    # Verificar si ya existe un ChatKernel para este usuario
+    if username not in user_kernels:
+        print(f"[CHATBOT] Creando nueva instancia de ChatKernel para {username}")
+        user_kernels[username] = ChatKernel(
+            chat_history=session.get('chat_history', []),
+            flows=custom_flows
+        )
+    chat_kernel = user_kernels[username]
 
     # [REFRESH LOGIC - CLEAN VARIABLES ON EVERY PAGE LOAD (GET REQUEST)]
     if request.method == 'GET':
@@ -173,9 +192,9 @@ async def chatbot(state='default_es'):
 
     # [EXTRA: STILL HANDLE THE REFRESH PARAMETER IF NEEDED]
     refresh = request.args.get('refresh', 'false') == 'true'
-
     if refresh:
         session['chat_history'] = []
+        user_kernels.pop(username, None)
 
     if state not in states:
         return "Estado no encontrado", 404
@@ -201,23 +220,12 @@ async def chatbot(state='default_es'):
         logging.info(f"Mensaje del usuario: {user_input}")
 
         selected_model = form.get('selected_model', 'gpt-4o')  # Modelo seleccionado, predeterminado: gpt-4o
-
         session['selected_model'] = selected_model
 
-        # Configurar el modelo en SemanticQueryEngine
-        chat_kernel = ChatKernel(
-            chat_history=session.get('chat_history', []),
-            flows=custom_flows
-        )
-        session['chat_history'] = chat_kernel.chat_history
-
         if user_input: 
-
             session['user_input'] = user_input
             session.modified = True
 
-
-            #response_assistant = asyncio.run(assistant.chat(user_input))
             try: 
                 #response_assistant = await assistant.chat(user_input)
                 response_assistant = await chat_kernel.handle_user_input(user_input)
@@ -234,6 +242,7 @@ async def chatbot(state='default_es'):
             session['chat_history'].append({"user": user_input, "assistant": response_assistant})
             session['response_assistant'] = response_assistant
             session.modified = True
+            
             return jsonify(assistant_response=response_assistant)
 
     return await render_template(states[state]['render_template'], 

@@ -8,9 +8,9 @@ services:
     volumes:
       - .:/app        # Monta el c  digo fuente en el contenedor
       - ./env:/app/env  # Usa el entorno virtual existente
-      - ./logs:/var/logs  # Mapea los logs fuera del contenedor
-      - ../data_creation:/app/data_creation
+      - ./logs:/app/logs  # Mapea los logs fuera del contenedor
       - ./faiss_index:/app/faiss_index
+      - ../data_creation:/app/data_creation
     environment:
       - PYTHONUNBUFFERED=1
       - FAISS_INDEX_PATH=/app/faiss_index

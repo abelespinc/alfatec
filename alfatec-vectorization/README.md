@@ -115,11 +115,11 @@ curl -X 'POST' \
 
 ### 🔹 2.3 Configurar **Crontab** dentro del contenedor
 
-La vectorización se ejecuta diariamente a las **4 AM** dentro del  **Docker** . Se define en el **Dockerfile** y usa el entorno virtual del proyecto:
+La vectorización se ejecuta diariamente a las **0** **AM** dentro del  **Docker** . Se define en el **Dockerfile** y usa el entorno virtual del proyecto:
 
 ```dockerfile
 # Agregar crontab dentro del contenedor
-RUN echo "0 4 * * * root /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
+RUN echo "0 0 * * * root /app/env/bin/python /app/scripts/vectorization.py" > /etc/cron.d/vectorization_cron \
     && chmod 0644 /etc/cron.d/vectorization_cron \
     && crontab /etc/cron.d/vectorization_cron
 ```
