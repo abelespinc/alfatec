@@ -24,9 +24,9 @@
 
                 <form action="{{ url_for('login') }}" method="POST">
                     <!-- Mensaje específico sobre el input de email -->
-                    <p class="login-input-message">Introduce tu correo electrónico:</p>
+                    <p class="login-input-message">Introduce tu usuario:</p>
                     <div class="login-input-group">
-                        <input type="email" id="email" name="email" class="login-input" placeholder="usuario@ejemplo.com" required>
+                        <input type="text" id="username" name="username" class="login-input" placeholder="Tu usuario" required>
                     </div>
 
                     <!-- Mensaje específico sobre el input de password -->

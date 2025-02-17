@@ -5,12 +5,14 @@ import uuid
 import requests
 import logging
 import re
+import quart
 from quart import Quart, render_template, request, session, redirect, url_for, jsonify, flash
 from flask_session import Session
 from utils.chat_utils import SemanticQueryEngine, MaxRetriesExceededError
 from utils.states import states
 from utils.chat_kernel import ChatKernel
 from utils.auth import authenticate, login_user, logout_user, login_required
+from utils.progress import send_progress_message, progress_messages
 
 #from quart_session import Session
 
@@ -47,7 +49,11 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
+@app.route('/')
+async def index():
+    return redirect(url_for('login'))  # ✅ Redirección inmediata a /login
 
+    
 # Ruta para login con logs detallados
 @app.route('/login', methods=['GET', 'POST'])
 async def login():
@@ -60,19 +66,19 @@ async def login():
             print("[LOGIN] Método POST detectado")
 
             form = await request.form
-            email = form.get('email')
+            username = form.get('username')
             password = form.get('password')
 
-            logging.info(f"[LOGIN] Datos recibidos - Email: {email}")
-            print(f"[LOGIN] Datos recibidos - Email: {email}")
+            logging.info(f"[LOGIN] Datos recibidos - Username: {username}")
+            print(f"[LOGIN] Datos recibidos - Username: {username}")
 
-            if not email or not password:
-                logging.error("[LOGIN] Error: Falta email o contraseña")
-                print("[LOGIN] Error: Falta email o contraseña")
-                await flash("Debes ingresar un email y contraseña.")
+            if not username or not password:
+                logging.error("[LOGIN] Error: Falta username o contraseña")
+                print("[LOGIN] Error: Falta username o contraseña")
+                await flash("Debes ingresar un username y contraseña.")
                 return redirect(url_for('login'))
 
-            user = authenticate(email, password)
+            user = authenticate(username, password)
 
             if user:
                 logging.info("[LOGIN] Usuario autenticado correctamente")
@@ -89,7 +95,7 @@ async def login():
                 logging.warning("[LOGIN] Autenticación fallida")
                 print("[LOGIN] Autenticación fallida")
 
-                await flash("Correo o contraseña incorrectos.")
+                await flash("Usuario o contraseña incorrectos.")
                 return redirect(url_for('login'))
 
         return await render_template('login.html')
@@ -102,21 +108,49 @@ async def login():
 
 @app.route('/logout')
 async def logout():
-    logging.info("[LOGOUT] Cierre de sesión iniciado")
-    print("[LOGOUT] Cierre de sesión iniciado")
+    try:
+        logging.info("[LOGOUT] Cierre de sesión iniciado")
+        print("[LOGOUT] Cierre de sesión iniciado")
 
-    logout_user()
+        # Asegurarse de que 'session' contiene 'user' antes de eliminarlo
+        if 'user' in session:
+            logout_user()
+            logging.info("[LOGOUT] Usuario desconectado correctamente")
+            print("[LOGOUT] Usuario desconectado correctamente")
+        else:
+            logging.warning("[LOGOUT] No había sesión activa")
+            print("[LOGOUT] No había sesión activa")
 
-    logging.info("[LOGOUT] Usuario desconectado, redirigiendo al login")
-    print("[LOGOUT] Usuario desconectado, redirigiendo al login")
+        # Redirigir de manera segura a la página de login
+        return redirect(url_for('login'))
 
-    return await redirect(url_for('login'))  # Agregamos `await` porque Quart usa asyn
+    except Exception as e:
+        logging.error(f"[LOGOUT] Error inesperado: {str(e)}")
+        print(f"[LOGOUT] Error inesperado: {str(e)}")
+        return "Internal Server Error", 500
+
+
+
+@app.route('/progress')
+async def progress():
+    async def event_stream():
+        while True:
+            if progress_messages:
+                yield f"data: {progress_messages[0]}\n\n"  # No borrar inmediatamente
+                await asyncio.sleep(3)  # Esperar para que el frontend lo reciba
+                progress_messages.pop(0)  # Luego de 3 segundos, borrar el mensaje
+            else:
+                yield "data: \n\n"  # Mantener la conexión abierta
+                await asyncio.sleep(1)  # Reducir la carga del servidor
+    
+    return quart.Response(event_stream(), content_type='text/event-stream')
 
 
 def show_chat_history():
     return session.get('chat_history', [])
 
 @app.route('/chatbot', methods=['GET', 'POST'])
+@login_required
 async def chatbot(state='default_es'):
     print('-----------GPT: CHATGPT PRINCIPAL FUNCTION RESPONSE START-----------')
     print('[CHATBOT] State: ',session.get('current_state', 0))

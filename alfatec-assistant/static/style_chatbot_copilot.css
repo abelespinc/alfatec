@@ -134,6 +134,32 @@ body, html {
     object-fit: cover;
 }
 
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important; /* ✅ Hace que el fondo sea transparente */
+    color: white;
+    padding: 0; /* ✅ Elimina el espacio interno que generaba el rectángulo */
+    border-radius: 0; /* ✅ Quita los bordes redondeados */
+    width: 100%; /* ✅ Hace que ocupe todo el ancho */
+    margin: 0; /* ✅ Elimina el margen para que se integre bien */
+}
+
+.status-message {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 10px; /* Espacio entre texto y spinner */
+    color: #00ffcc; /* Cambia este color al que prefieras */
+
+}
+
+.loading-spinner {
+    font-size: 18px;
+    color: #00ffcc; /* Cambia este color al que prefieras */
+
+}
+
 #loadingSpinner {
     position: absolute; /* Asegura que esté encima de otros elementos */
     bottom: 102px; /* Ajusta según el diseño */
@@ -229,4 +255,73 @@ body, html {
 
 .dynamic-table tr:hover {
     background-color: #3a3a3a; /* Resaltado al pasar el mouse */
+}
+
+
+/* 📌 Estilo para la caja del usuario */
+.user-panel {
+    background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    padding: 12px 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 160px;
+}
+
+/* 🟡 Contenedor del usuario y logout */
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alineado a la derecha */
+    color: white;
+    font-size: 14px;
+}
+
+/* 👤 Estilo del nombre de usuario */
+.username {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* 👤 Estilo del nombre de usuario con el icono */
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.user-info i {
+    font-size: 22px;
+    margin-right: 8px; /* Espaciado entre el icono y el nombre */
+}
+
+/* 🔴 Botón de "Cerrar sesión" con mejor estilo */
+.logout-btn {
+    background: linear-gradient(135deg, #ff4d4d, #cc0000); /* Degradado rojo */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.logout-btn i {
+    margin-right: 6px; /* Espaciado entre el icono y el texto */
+}
+
+/* 🟠 Animación al pasar el mouse */
+.logout-btn:hover {
+    background: linear-gradient(135deg, #cc0000, #990000);
+    transform: scale(1.05); /* Ligera expansión */
+    box-shadow: 0px 4px 10px rgba(255, 77, 77, 0.5);
 }

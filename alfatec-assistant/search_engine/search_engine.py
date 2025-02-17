@@ -2,6 +2,7 @@ import re
 import os
 import json
 import requests
+import time
 from itertools import product
 from rapidfuzz import fuzz
 from rapidfuzz import process
@@ -194,6 +195,8 @@ class SearchEngine:
         :return: Lista de correos relevantes que cumplen los criterios.
         """
         try:
+            start_total = time.time()
+
             print("===============================================================")
             print(f'Consulta del usuario:\n {query}')
             print("===============================================================")
@@ -201,26 +204,51 @@ class SearchEngine:
             
             # Detectar si la consulta menciona temas, asuntos o contenido del email
             should_use_faiss = await self.detect_theme_subject_body(query)
-            
+            end_detect_theme_subject_body = time.time()
+            print(f"[SEARCH ENGINE] Tiempo total detect theme subject body: {end_detect_theme_subject_body - start_total:.2f} segundos")
+
             if should_use_faiss:
                 print("🔍 Se detectó que la consulta menciona temas, asunto o contenido. Ejecutando búsqueda en FAISS...")
+                start_faiss = time.time()
                 faiss_results = self.search_faiss(query=query, k=k) 
                 # Extraer eml_id de los resultados de FAISS
                 faiss_eml_ids = {doc["metadata"]["eml_id"] for doc in faiss_results if "metadata" in doc and "eml_id" in doc["metadata"]}
                 # Filtrar self.email_data para mantener la misma estructura y formato
-                emails = [email for email in self.email_data if email.get("eml_id") in faiss_eml_ids]                
+                emails = [email for email in self.email_data if email.get("eml_id") in faiss_eml_ids]
+                end_faiss = time.time()
                 print(f"✅ Correos filtrados usando FAISS: {len(emails)}")
+                print(f"[SEARCH ENGINE] Tiempo en búsqueda FAISS: {end_faiss - start_faiss:.2f} segundos")
+
             else:
                 print("⚠️ La consulta no menciona temas, asunto o contenido. No se realizará búsqueda en FAISS.")
                 emails = self.email_data  # Si no se usa FAISS, se toman todos los emails de processed_emails.json
 
             # Extraer criterios de búsqueda con mini-agentes
+            start_senders = time.time()
             senders = await self.detect_sender(query)
+            end_senders = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en detectar remitentes: {end_senders - start_senders:.2f} segundos")
+
+            start_recipients = time.time()
             recipients = await self.detect_recipients(query)
+            end_recipients = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en detectar destinatarios: {end_recipients - start_recipients:.2f} segundos")
+
+            start_date = time.time()
             date_range = await self.detect_date_range(query)
+            end_date = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en detectar rango de fechas: {end_date - start_date:.2f} segundos")
+
+            start_attachments = time.time()
             has_attachments = await self.detect_attachments(query)
+            end_attachments = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en detectar si hay adjuntos: {end_attachments - start_attachments:.2f} segundos")
+
+            start_attachment_names = time.time()
             attachment_names = await self.detect_attachment_names(query)
-            
+            end_attachment_names = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en detectar nombres de adjuntos: {end_attachment_names - start_attachment_names:.2f} segundos")
+        
             print("\n🔍 Criterios extraídos:")
             print(json.dumps({
                 "senders": senders, "recipients": recipients, "date_range": date_range,
@@ -230,6 +258,7 @@ class SearchEngine:
 
             # Generar combinaciones de criterios
             print("\n===# GENERANDO COMBINACIONES DE CRITERIOS #===")
+            start_filter = time.time()
             combinations = list(product(
                 senders or [None],
                 recipients or [None],  # Si no hay recipients, usar None
@@ -284,6 +313,10 @@ class SearchEngine:
 
             print(f"\n===# RESULTADO FINAL DE LA BÚSQUEDA #===")
             print(f"Total de emails únicos: {len(unique_emails_list)}")
+
+            end_total = time.time()
+            print(f"[SEARCH ENGINE] Tiempo en generación de combinaciones y filtrado de emails: {end_total - start_filter:.2f} segundos")
+            print(f"[SEARCH ENGINE] Tiempo total de búsqueda: {end_total - start_total:.2f} segundos")
 
             return unique_emails_list
 

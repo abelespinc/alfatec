@@ -11,7 +11,9 @@ def load_users():
     if not os.path.exists(USERS_FILE):
         # Usuario por defecto (agregamos rol por defecto, por ejemplo, "Usuario Básico")
         default_users = {
-            "carlos.leta@connecthink.eu": {"name": "Carlos Leta", "password": "password", "role": "Administrador"}
+            "alfatec.business": {"name": "alfatec business", "password": "alfatec1", "role": "Administrador"},
+            "alfatec.tech": {"name": "alfatec tech", "password": "alfatec2", "role": "Administrador"},
+            "alberto.delariva": {"name": "alberto delariva", "password": "alfatec3", "role": "Administrador"},
         }
         with open(USERS_FILE, "w") as f:
             json.dump(default_users, f, indent=4)
@@ -27,34 +29,34 @@ def save_users(users):
     with open(USERS_FILE, "w") as f:
         json.dump(users, f, indent=4)
  
-def add_user(email, name, password, role):
+def add_user(username, name, password, role):
     """Agrega un usuario nuevo; retorna False si ya existe."""
     users = load_users()
-    if email in users:
+    if username in users:
         return False
-    users[email] = {"name": name, "password": password, "role": role}
+    users[username] = {"name": name, "password": password, "role": role}
     save_users(users)
     return True
  
-def update_user(email, name, password, role):
+def update_user(username, name, password, role):
     """Actualiza los datos de un usuario; si no se proporciona una nueva contraseña, se mantiene la actual.
        Retorna False si el usuario no existe."""
     users = load_users()
-    if email not in users:
+    if username not in users:
         return False
     # Si password está vacío, se conserva la contraseña existente.
     if not password:
-        password = users[email].get("password", "")
-    users[email] = {"name": name, "password": password, "role": role}
+        password = users[username].get("password", "")
+    users[username] = {"name": name, "password": password, "role": role}
     save_users(users)
     return True
  
  
-def delete_user(email):
+def delete_user(username):
     """Elimina un usuario; retorna False si no existe."""
     users = load_users()
-    if email in users:
-        del users[email]
+    if username in users:
+        del users[username]
         save_users(users)
         return True
     return False

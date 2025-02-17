@@ -14,17 +14,30 @@
                 <div class="col-10 chat mx-auto h-100">
                     <div class="card h-100">
                         <div class="card-header msg_head">
-                            <div class="d-flex bd-highlight flex-column align-items-center">
+                            <div class="d-flex bd-highlight justify-content-between align-items-center w-100">
+                                <!-- 🔵 Logo a la izquierda -->
                                 <div class="img_cont">
                                     <img src="{{ url_for('static', filename='images/alfatech/logo_alfatech.png') }}" class="user_img">
                                 </div>
+                        
+                                <!-- 🟡 Nuevo diseño del usuario y logout -->
+                                <div class="user-panel">
+                                    <div class="user-info">
+                                        <i class="fas fa-user-circle"></i> <!-- 👤 Icono de usuario -->
+                                        <span class="username">{{ session.get('user', {}).get('name', 'Invitado') }}</span>
+                                    </div>
+                                    <a href="{{ url_for('logout') }}" class="logout-btn">
+                                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        </div>                                                              
                         <div id="messageFormeight" class="card-body msg_card_body">
                             <!-- Aquí irán los mensajes -->
                         </div>
-                        <div id="loadingSpinner" class="text-center" style="display: none;">
-                            <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <div id="loadingContainer" class="loading-container text-center" style="display: none;">
+                            <span id="statusMessage" class="status-message"></span>
+                            <i class="fas fa-spinner fa-spin loading-spinner"></i>
                         </div>
                         <div class="card-footer">
                             <div class="input-group-container">
@@ -60,6 +73,15 @@
     <script>
         $(document).ready(function() {
             let isWaitingResponse = false;
+            
+            const eventSource = new EventSource("/progress");
+            eventSource.onmessage = function(event) {
+                const statusMessage = event.data;
+                if (statusMessage) {
+                    $("#loadingContainer").show(); // Mostrar siempre que haya progreso
+                    $("#statusMessage").text(statusMessage);
+                }
+            };
 
             $("#messageArea").on("submit", function(event) {
                 event.preventDefault();
@@ -67,43 +89,48 @@
                 if (isWaitingResponse) return;
 
                 const userInput = $("#text").val().trim();
-                const selectedModel = $("#modelSelector").val(); // Obtener modelo seleccionado
+                const selectedModel = $("#modelSelector").val();
 
                 if (!userInput) return;
 
                 isWaitingResponse = true;
                 $('#send').prop('disabled', true);
+                $("#loadingContainer").show();  // 🔹 Mostrar el spinner siempre
 
                 const date = new Date();
                 const str_time = date.getHours() + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
 
-                // Añadir mensaje del usuario
                 addMessage("Usted", userInput, str_time, true);
 
-                $("#loadingSpinner").show();
+                $("#statusMessage").text("Conectando con el asistente...");
 
                 $.ajax({
                     type: "POST",
                     url: window.location.pathname,
                     data: { user_input: userInput },
                     success: function(response) {
-                        // Añadir mensaje del chatbot
                         addMessage("Alfatec AV", response.assistant_response, str_time, false);
+                        setTimeout(() => {
+                            $("#loadingContainer").hide();
+                            $("#statusMessage").text("");
+                        }, 500);
 
-                        $("#loadingSpinner").hide();
                         isWaitingResponse = false;
                         $('#send').prop('disabled', false);
                     },
                     error: function(xhr, status, error) {
                         addMessage("Error", "Hubo un problema al procesar tu solicitud. Intenta de nuevo.", str_time, false);
+                        setTimeout(() => {
+                            $("#loadingContainer").hide();
+                            $("#statusMessage").text("");
+                        }, 500);
 
-                        $("#loadingSpinner").hide();
                         isWaitingResponse = false;
                         $('#send').prop('disabled', false);
                     }
                 });
-
-                $("#text").val(""); // Limpiar el textarea
+                
+                $("#text").val("");
             });
 
             function addMessage(sender, message, time, isUser) {

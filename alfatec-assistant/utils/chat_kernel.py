@@ -2,6 +2,9 @@ from utils.chat_utils import SemanticQueryEngine, MaxRetriesExceededError
 from utils.prompts import CLASSIFICATION_PROMPT, CONVERSATIONAL_PROMPT
 from search_engine.search_engine import SearchEngine
 from response_creator.response_creator import ResponseCreator
+import asyncio
+from utils.progress import send_progress_message
+import time
 
 class ChatKernel:
     def __init__(self, chat_history, conversational=True, password=False,flows=None,tone=""):
@@ -50,12 +53,16 @@ class ChatKernel:
         print("[KERNEL] ChatKernel inicializado con flujos:", self.flows)
 
     async def run_consult(self, user_input):
+        await send_progress_message("Filtrando los emails más relevantes asociados a tu consulta...")
+
         search_engine = SearchEngine()
-        #filtered_emails = await search_engine.search(query=user_input)
         filtered_emails = await search_engine.search(query=user_input, k=1000)
 
+        # Verificar si filtered_emails es None o está vacío
         if not filtered_emails:
-            return "No se encontraron correos relevantes."
+            return "Parece que no hay correos relevantes para tu búsqueda. Pero no te preocupes, puedes intentarlos de nuevo modificando ligeramente la pregunta para ver si en la proxima tenemos mas suerte"
+
+        await send_progress_message("Procesando información sobre los emails...")
 
         response_creator = ResponseCreator(filtered_emails, user_input)
         resumen = await response_creator.summarize_emails()
@@ -67,9 +74,17 @@ class ChatKernel:
         Clasifica el input del usuario en uno de los flujos definidos.
         """
         try:
+            await send_progress_message("Analizando y clasificando tu solicitud...")
             print(f"[KERNEL] Clasificando input: '{user_input}'")
+
+            start_time = time.time()
+
             classification_prompt = f"Por favor, clasifica el siguiente mensaje:\n'{user_input}'"
             response = await self.semantic_engine_classifier.request_with_rate_limit(classification_prompt)
+
+            end_time = time.time()
+            print(f"[KERNEL] Tiempo en clasificar input: {end_time - start_time:.2f} segundos")
+
             print(f"[KERNEL] Respuesta de clasificación: '{response}'")
             
             if "consult" in response.lower():
@@ -82,6 +97,7 @@ class ChatKernel:
             return "conversational"
         
         except MaxRetriesExceededError as e:
+            await send_progress_message("⚠️ Error en la clasificación del mensaje.")
             print("[KERNEL] Error: No se pudo clasificar el mensaje.")
             print(f"[KERNEL] Detalle del error: {e}")
             self.last_classification = "conversational"  # Por defecto, redirigir al conversacional
@@ -112,6 +128,7 @@ class ChatKernel:
         # Si el flujo está activo, manejar normalmente
         try:
             if message_type == "conversational":
+                await send_progress_message("Generando respuesta del asistente...")
                 print("[KERNEL] Redirigiendo al motor de conversación.")
                 return await self.semantic_engine_conversational.request_with_rate_limit(user_input)
 
@@ -124,6 +141,7 @@ class ChatKernel:
                 return "Lo siento, no puedo clasificar tu solicitud. Por favor, intenta de nuevo."
         
         except MaxRetriesExceededError as e:
+            await send_progress_message("⚠️ Error al procesar la consulta.")
             print("[KERNEL] Error: No se pudo manejar el mensaje.")
             print(f"[KERNEL] Detalle del error: {e}")
             return "Lo siento, no se pudo procesar tu solicitud en este momento. Por favor, intenta más tarde."

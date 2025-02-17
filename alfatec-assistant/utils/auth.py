@@ -3,16 +3,16 @@ from functools import wraps
 from utils.models import User
 from utils.users import load_users
 
-def authenticate(email, password):
+def authenticate(username, password):
     """Valida si el usuario existe y la contraseña es correcta usando el JSON."""
     users = load_users()
-    user = users.get(email)
+    user = users.get(username)
     if user and user['password'] == password:
-        return User(email, user['name'], user.get('role', 'Usuario Básico'))
+        return User(username, user['name'], user.get('role', 'Usuario Básico'))
     return None
 
 def login_user(user):
-    session['user'] = {'email': user.email, 'name': user.name, 'role': user.role}
+    session['user'] = {'username': user.username, 'name': user.name, 'role': user.role}
 
 def logout_user():
     session.pop('user', None)
